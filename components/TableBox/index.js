@@ -54,7 +54,7 @@ export default function TableBox ({ columns, actions, hasHeader = true, data, or
                                 </td>)
                             })}
                             <td className='tbox-table-actions'>
-                                {actions.map((a, idx) => <div key={idx}>
+                                {actions.filter(a => !a.enabled || a.enabled(row)).map((a, idx) => <div key={idx}>
                                     <Tooltip title={a.label}><IconButton onClick={() => a.onClick(row)}>{a.icon}</IconButton></Tooltip>
                                 </div>)}
                             </td>
