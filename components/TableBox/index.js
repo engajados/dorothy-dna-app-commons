@@ -13,12 +13,12 @@ import {
 
 import Search from '../ui/icons/Search';
 
-export default function TableBox ({ columns, actions, hasHeader = true, data, order, direction, canSort, onSearchChange, onChangeOrder }) {
+export default function TableBox ({ columns, actions, hasHeader = true, header, data, order, direction, canSort, onSearchChange, onChangeOrder }) {
     const searchInputRef = useRef(null);
     const theme = useTheme();
 
     return (<div className="tablebox">
-        {hasHeader && <div className='tbox-header'>
+        {hasHeader && !header && <div className='tbox-header'>
             <InputBaseStyled
                 spellCheck="false"
                 className='tbox-search'
@@ -29,6 +29,9 @@ export default function TableBox ({ columns, actions, hasHeader = true, data, or
                 onChange={onSearchChange}
             />
             {/* <WorkingGroupsOrganizationTypeMenu onFilterChange={console.log} /> */}
+        </div>}
+        {!!header && <div className='tbox-header'>
+            {header}
         </div>}
         <div className="tbox-body">
             <table className='tbox-table'>
