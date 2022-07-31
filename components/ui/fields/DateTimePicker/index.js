@@ -12,7 +12,7 @@ export default function DatePicker({ label, value, onChange, error, inputFormat=
         inputFormat={inputFormat}
         value={value}
         onChange={(value) => onChange(value?.valueOf())}
-        renderInput={(params) => <TextField {...params} />}
+        renderInput={(params) => <TextField {...params} error={error} className="input-datepicker" />}
         ampm={false}
         {...rest}
       />
