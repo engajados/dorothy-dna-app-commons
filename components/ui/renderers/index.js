@@ -2,7 +2,7 @@ import dayjs from 'dayjs';
 import NumberFormat from 'react-number-format';
 
 export function Date({ value, format = 'DD/MM/YYYY' }) {
-  return dayjs(value).format(format);
+  return !value ? null : dayjs(value).format(format);
 }
 
 export function Float({ value, ...rest }) {
