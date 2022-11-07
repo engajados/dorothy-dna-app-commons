@@ -63,8 +63,8 @@ export default function TableBox({
             </tr>
           </thead>
           <TableBody>
-            {data.map(row => (
-              <StyledTableRow key={row.id}>
+            {data.map((row, index) => (
+              <StyledTableRow key={`${row.id}-${index}`}>
                 {columns
                   .filter(c => c.show || c.show === undefined)
                   .map(c => {
@@ -75,6 +75,7 @@ export default function TableBox({
                         field: c.field,
                         value: row[c.field],
                         row,
+                        index,
                         ...c.rendererProps,
                       });
 
