@@ -1,17 +1,18 @@
-import cn from 'classnames/bind';
+import { useClassnames } from 'dorothy-dna-react';
 import styles from './big_square_test_component.module.scss';
 
-let cx = cn.bind(styles);
-
 export default function BigSquareTestComponent({ parentClassNames = {} }) {
-  let halfColor2 = cx({ half_color_2: true }, parentClassNames['half_color_2']);
+  const center = useClassnames(styles, 'center', parentClassNames);
+  const big_square = useClassnames(styles, 'big_square', parentClassNames);
+  const half_color_1 = useClassnames(styles, 'half_color_1', parentClassNames);
+  const half_color_2 = useClassnames(styles, 'half_color_2', parentClassNames);
 
   return (
     <>
-      <div className={cn(styles.center, { ...parentClassNames['center'] })}>
-        <div className={cn(styles.big_square, parentClassNames['big_square'])}>
-          <div className={cn(styles.half_color_1, parentClassNames['half_color_1'])}></div>
-          <div className={halfColor2}></div>
+      <div className={center}>
+        <div className={big_square}>
+          <div className={half_color_1}></div>
+          <div className={half_color_2}></div>
         </div>
       </div>
     </>
