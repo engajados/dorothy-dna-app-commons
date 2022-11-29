@@ -13,7 +13,7 @@ import styles from './login.module.scss';
 
 import { layoutTabletMQ } from '../../../utils/configs';
 
-const LoginPanel = ({ onLogin, next, doing_login, appLogo }) => {
+const LoginPanel = ({ onLogin, next, doing_login, appLogo, subTitle }) => {
   const { server } = useDorothy();
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const history = useHistory();
@@ -152,7 +152,7 @@ const LoginPanel = ({ onLogin, next, doing_login, appLogo }) => {
             <div className={`${styles.login_logo}`}>
               <div className="centered">
                 <img className="img-fluid" src={appLogo} alt="logo" />
-                <p className="mt-3">Gestão, origem, rastreabilidade e transparência.</p>
+                <p className="mt-3">{subTitle}</p>
               </div>
             </div>
           </div>
