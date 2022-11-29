@@ -1,0 +1,170 @@
+@import '../../sass/variables';
+
+// Navbar 
+.navbar {
+  background-color: $white;
+  box-shadow: $shadow;
+  padding: .75rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  user-select: none;
+  position: sticky;
+  z-index: 4;
+
+  .nav_start {
+    display: flex;
+    align-items: center;
+
+    .nav_logo {
+      margin-right: 1rem;
+      height: 3rem;
+    }
+  }
+
+  .nav_end {
+    display: flex;
+    align-items: center;
+  }
+}
+
+@media (max-width: $tablet) {
+  .navbar {
+    padding: 0;
+    flex-wrap: wrap;
+
+    .nav_start,
+    .nav_end {
+      order: 1;
+      margin: 0.5rem;
+    }
+
+    .nav_start {
+      .nav_logo {
+        margin-right: 0.5rem;
+      }
+    }
+
+    .nav_center {
+      width: 100%;
+      order: 2;
+      display: flex;
+      align-items: center;
+      align-content: center;
+      justify-content: center;
+      flex-flow: column nowrap;
+      border-top: 1px groove $shadow-color;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+    }
+  }
+}
+
+.nav_profile {
+  .nav_profile_btn {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    color: $text;
+    cursor: pointer;
+
+    .nav_profile_img {
+      height: 2.5rem;
+      width: 2.5rem;
+      border-radius: 50%;
+      margin-right: .5rem;
+    }
+
+    svg {
+      height: 1rem;
+      width: unset;
+      margin-left: .25rem;
+    }
+  }
+}
+
+.nav_profile_menu {
+  user-select: none;
+
+  .MuiPaper-elevation {
+    transform: translate(0, .5rem) !important;
+
+    ul {
+      padding: 0;
+
+      li {
+        padding: .5rem 1rem;
+        font-size: .875rem;
+
+        &:focus {
+          background: unset;
+        }
+
+        &:hover {
+          background: $light-gray;
+        }
+      }
+    }
+
+  }
+
+  .version_number {
+    width: 100%;
+    text-align: center;
+    opacity: 0.5;
+    border-top: solid 1px rgb(0, 0, 0, 0.2);
+  }
+}
+
+.nav-roleselector {
+  .nav-roleselector-btn {
+    user-select: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    color: $text;
+    font-weight: 500;
+    height: 1.5rem;
+
+    svg {
+      height: 1rem;
+      width: unset;
+      margin-left: .25rem;
+    }
+  }
+}
+
+.nav-roleselector-menu {
+  user-select: none;
+
+  :global(.MuiPaper-elevation) {
+    transform: translate(0, .5rem) !important;
+
+    ul {
+      padding: 0;
+
+      .nav-roleselector-menutitle {
+        background-color: rgba($primary, .75);
+        color: $white;
+        padding: .5rem 1rem;
+        font-size: .875rem;
+      }
+
+      li {
+        padding: .5rem 1rem;
+        font-size: .875rem;
+
+        &:focus {
+          background: unset;
+        }
+
+        &:hover {
+          background: $light-gray;
+        }
+      }
+
+    }
+  }
+}
