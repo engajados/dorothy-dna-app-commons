@@ -13,7 +13,7 @@ import { useHistory } from 'react-router-dom';
 
 import { useUser, ToolMenuContainer, useDorothy } from 'dorothy-dna-react';
 
-import ConfirmationDialog from '../../../components/ConfirmationDialog';
+import ConfirmationDialog from './../ConfirmationDialog';
 
 import { layoutTabletMQ } from '../../../utils/configs';
 

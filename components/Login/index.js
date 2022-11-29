@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import Card from '../../../components/Card';
+import Card from './../Card';
 import { TextField, useMediaQuery } from '@mui/material';
 
 import { useSnackbar } from 'notistack';
