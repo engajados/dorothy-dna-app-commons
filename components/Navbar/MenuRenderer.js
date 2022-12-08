@@ -43,8 +43,8 @@ export default function MenuRenderer({ items }) {
     _showHiddenMenu(false);
   };
 
-  return (
-    <>
+  return (<>
+    {menuItens && menuItens.length > 1 && <>
       <div className={styles['nav-menu']}>
         {menuItens &&
           menuItens.map(i => (
@@ -86,8 +86,8 @@ export default function MenuRenderer({ items }) {
           ))}
         </div>
       )}
-    </>
-  );
+    </>}
+  </>);
 }
 
 function ToolIcon({ tool }) {
