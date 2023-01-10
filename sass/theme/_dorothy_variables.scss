@@ -1,10 +1,14 @@
-// Default colors
-$white: #fff;
-$gray: #444;
-$light-gray: #f1f1f1;
-$lighter-gray: #f9f9f9;
+// primary palette
+$gray: #666666;
+$light-gray: #F1F1F1; // gray-2
+$lighter-gray: #FCFCFC; // gray-3
+$white: #FFFFFF;
+$black: #222222;
+
+// secondary palette
 $yellow: #F9C623;
-$red: #DC3E4D;
+$red: #DB3E0B;
+$green: #1BB53A;
 
 // Other styles
 $shadow-color: rgba(0, 0, 0, .1);
@@ -21,7 +25,6 @@ $atuacao: #009164;
 $comercial: #F9C623;
 $social: #e46f2a;
 
-
 //Charts
 $chart1: #F9C623;
 $chart2: #E46F2A;
@@ -35,3 +38,14 @@ $mobileM: '375px';
 $mobileL: '425px';
 $tablet: '768px';
 $wide: '1024px';
+
+//text sizes and/or spaces
+$normal: 1rem;
+$smaller: 1rem;
+$big: 1.125rem;
+$bigger: 1.25rem;
+$biggest: 1.5rem;
+$double: 2rem;
+$triple: 3rem;
+$fivetimes: 5rem;
+$tentimes: 10rem;

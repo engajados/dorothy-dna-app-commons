@@ -1,8 +1,9 @@
-@import 'variables';
-@import 'base/reset';
-@import 'base/page';
-@import 'base/buttons';
-@import 'base/grid';
-@import 'base/utilities';
-@import 'base/forms';
-@import 'base/charts';
+@import 'theme/dorothy_variables';
+@import 'base/dorothy_reset';
+@import 'base/dorothy_page';
+@import 'base/dorothy_buttons';
+@import 'base/dorothy_grid';
+@import 'base/dorothy_utilities';
+@import 'base/dorothy_forms';
+@import 'base/dorothy_charts';
+@import 'theme/dorothy_texts';
