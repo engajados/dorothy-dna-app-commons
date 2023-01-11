@@ -9,16 +9,19 @@
         fieldset {
             border-color: $yellow !important;
         }
+
         .MuiInputLabel-root {
             color: $yellow !important;
         }
     }
+
     &.critical {
         background-color: rgba($red, .1) !important;
 
         fieldset {
             border-color: $red !important;
         }
+
         .MuiInputLabel-root {
             color: $red !important;
         }
@@ -27,7 +30,7 @@
     .MuiInputLabel-root {
         background: $white;
         transform: translate(.5rem, -.5rem) scale(0.75);
-        color: $text;
+        color: $gray;
         padding: 0 .5rem;
     }
 
@@ -42,14 +45,16 @@
             &::placeholder {
                 opacity: 0;
                 transition: .25s ease;
-                color: $text;
+                color: $gray;
             }
         }
+
         fieldset {
             border: 1px solid transparent;
             border-radius: .5rem;
             transition: .25s ease;
         }
+
         &.MuiInputBase-adornedStart {
 
             .MuiInputAdornment-root {
@@ -58,6 +63,7 @@
                     color: $gray;
                 }
             }
+
             input {
                 padding: .5rem 1rem .5rem 0;
             }
@@ -71,17 +77,20 @@
             }
         }
     }
+
     &:focus-within {
         input {
             &::placeholder {
                 opacity: .5;
             }
         }
+
         fieldset {
             border: 1px solid $primary !important;
         }
     }
 }
+
 .input-select {
     width: 100%;
     background-color: rgba($primary, .05) !important;
@@ -93,16 +102,19 @@
         fieldset {
             border-color: $yellow !important;
         }
+
         .MuiInputLabel-root {
             color: $yellow !important;
         }
     }
+
     &.critical {
         background-color: rgba($red, .1) !important;
 
         fieldset {
             border-color: $red !important;
         }
+
         .MuiInputLabel-root {
             color: $red !important;
         }
@@ -120,6 +132,7 @@
         height: 2rem !important;
         line-height: 2rem;
     }
+
     fieldset {
         border-color: transparent;
         transition: .25s ease;
@@ -132,16 +145,19 @@
             }
         }
     }
+
     .Mui-focused {
         fieldset {
             border-color: rgba($primary, .25);
             border-width: 1px !important;
         }
+
         &:focus-within {
             border-color: $primary !important;
         }
     }
 }
+
 .input-autocomplete {
     width: 100%;
     background-color: rgba($primary, .05) !important;
@@ -153,21 +169,24 @@
         fieldset {
             border-color: $yellow !important;
         }
+
         .MuiInputLabel-root {
             color: $yellow !important;
         }
     }
+
     &.critical {
         background-color: rgba($red, .1) !important;
 
         fieldset {
             border-color: $red !important;
         }
+
         .MuiInputLabel-root {
             color: $red !important;
         }
     }
-    
+
     .MuiInputLabel-root {
         background: $white;
         transform: translate(.5rem, -.5rem) scale(0.75);
@@ -183,13 +202,15 @@
             border-radius: .5rem !important;
             line-height: 2rem;
             font-size: .875rem;
-    }
+        }
+
         fieldset {
             border: 1px solid transparent;
             border-radius: .5rem;
             transition: .25s ease;
         }
     }
+
     &:hover {
         &:not(:focus-within) {
             fieldset {
@@ -197,12 +218,14 @@
             }
         }
     }
+
     &:focus-within {
         fieldset {
             border: 1px solid $primary !important;
         }
     }
 }
+
 .input-datepicker {
     width: 100%;
     background-color: rgba($primary, .05) !important;
@@ -214,16 +237,19 @@
         fieldset {
             border-color: $yellow !important;
         }
+
         .MuiInputLabel-root {
             color: $yellow !important;
         }
     }
+
     &.critical {
         background-color: rgba($red, .1) !important;
 
         fieldset {
             border-color: $red !important;
         }
+
         .MuiInputLabel-root {
             color: $red !important;
         }
@@ -232,9 +258,10 @@
     .MuiInputLabel-root {
         background: $white;
         transform: translate(.5rem, -.5rem) scale(0.75);
-        color: $text;
+        color: $gray;
         padding: 0 .5rem;
     }
+
     .MuiOutlinedInput-root {
         input {
             height: 2rem;
@@ -246,14 +273,16 @@
             &::placeholder {
                 opacity: .5;
                 transition: .25s ease;
-                color: $text;
+                color: $gray;
             }
         }
+
         fieldset {
             border: 1px solid transparent;
             border-radius: .5rem;
             transition: .25s ease;
         }
+
         .MuiInputAdornment-root {
             button {
                 margin: 0;
@@ -262,6 +291,7 @@
                     fill: $gray;
                     opacity: .5;
                 }
+
                 &:hover {
                     svg {
                         fill: $primary;
@@ -279,17 +309,20 @@
             }
         }
     }
+
     &:focus-within {
         input {
             &::placeholder {
                 opacity: 0;
             }
         }
+
         fieldset {
             border: 1px solid $primary !important;
         }
     }
 }
+
 .input-daterangepicker {
 
     &.warning {
@@ -298,16 +331,19 @@
         fieldset {
             border-color: $yellow !important;
         }
+
         .MuiInputLabel-root {
             color: $yellow !important;
         }
     }
+
     &.critical {
         background-color: rgba($red, .1) !important;
 
         fieldset {
             border-color: $red !important;
         }
+
         .MuiInputLabel-root {
             color: $red !important;
         }
@@ -317,13 +353,14 @@
         width: 100%;
         background-color: rgba($primary, .05) !important;
         border-radius: .5rem !important;
-    
+
         .MuiInputLabel-root {
             background: $white;
             transform: translate(.5rem, -.5rem) scale(0.75);
-            color: $text;
+            color: $gray;
             padding: 0 .5rem;
         }
+
         .MuiOutlinedInput-root {
             input {
                 height: 2rem;
@@ -331,26 +368,29 @@
                 border-radius: .5rem !important;
                 line-height: 2rem;
                 font-size: .875rem;
-    
+
                 &::placeholder {
                     opacity: .5;
                     transition: .25s ease;
-                    color: $text;
+                    color: $gray;
                 }
             }
+
             fieldset {
                 border: 1px solid transparent;
                 border-radius: .5rem;
                 transition: .25s ease;
             }
+
             .MuiInputAdornment-root {
                 button {
                     margin: 0;
-    
+
                     svg {
                         fill: $gray;
                         opacity: .5;
                     }
+
                     &:hover {
                         svg {
                             fill: $primary;
@@ -360,7 +400,7 @@
                 }
             }
         }
-    
+
         &:hover {
             &:not(:focus-within) {
                 fieldset {
@@ -368,16 +408,19 @@
                 }
             }
         }
+
         &:focus-within {
             input {
                 &::placeholder {
                     opacity: 0;
                 }
             }
+
             fieldset {
                 border: 1px solid $primary !important;
             }
         }
+
         &:first-child {
             margin-bottom: .5rem;
         }
@@ -395,16 +438,19 @@
         fieldset {
             border-color: $yellow !important;
         }
+
         .MuiInputLabel-root {
             color: $yellow !important;
         }
     }
+
     &.critical {
         background-color: rgba($red, .1) !important;
 
         fieldset {
             border-color: $red !important;
         }
+
         .MuiInputLabel-root {
             color: $red !important;
         }
@@ -413,10 +459,10 @@
     .MuiInputLabel-root {
         background: $white;
         transform: translate(.5rem, -.5rem) scale(0.75);
-        color: $text;
+        color: $gray;
         padding: 0 .5rem;
     }
-    
+
     .MuiOutlinedInput-root {
         padding: 0;
 
@@ -425,6 +471,7 @@
             border-radius: .5rem !important;
             font-size: .875rem;
         }
+
         fieldset {
             border: 1px solid transparent;
             border-radius: .5rem;
@@ -439,17 +486,20 @@
             }
         }
     }
+
     &:focus-within {
         input {
             &::placeholder {
                 opacity: .5;
             }
         }
+
         fieldset {
             border: 1px solid $primary !important;
         }
     }
 }
+
 .input-switch {
     &.inverted {
         transform: rotate(180deg);
@@ -458,20 +508,22 @@
             background-color: $primary;
             opacity: .75;
         }
+
         .MuiSwitch-switchBase {
             color: $primary;
 
-            &.Mui-checked{
+            &.Mui-checked {
                 color: $white;
-    
-                & +.MuiSwitch-track {
+
+                &+.MuiSwitch-track {
                     background-color: $gray !important;
                     opacity: .25;
                 }
             }
-        } 
+        }
     }
 }
+
 .profile-img {
     width: 100%;
     height: 0;
@@ -488,18 +540,22 @@
         object-fit: cover;
     }
 }
+
 .hr-spacer {
     border-top: 1px solid $lighter-gray;
     margin: 1rem 0;
 }
+
 .modal {
     .MuiPaper-root {
         width: 100%;
     }
+
     .MuiDialogTitle-root {
         font-size: 1rem;
         padding: 1rem 1.5rem;
     }
+
     .MuiDialogContent-root {
         padding: 1.5rem;
         border-top: 1px solid $light-gray;
@@ -511,6 +567,7 @@
             .MuiTabs-scroller {
                 overflow: visible !important;
             }
+
             .MuiButtonBase-root {
                 padding: .5rem 1.5rem;
                 border-radius: .5rem .5rem 0 0;
@@ -536,6 +593,7 @@
             }
         }
     }
+
     .MuiDialogActions-root {
         padding: 1rem 1.5rem;
     }

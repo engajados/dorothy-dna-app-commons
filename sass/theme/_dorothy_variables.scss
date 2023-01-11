@@ -1,36 +1,31 @@
 // primary palette
-$gray: #666666;
-$light-gray: #F1F1F1; // gray-2
-$lighter-gray: #FCFCFC; // gray-3
-$white: #FFFFFF;
-$black: #222222;
+$primary: #009BDC !default;
+$primary-hover: #009BDC !default; //review
+$secondary: #F9C623 !default;
+$secondary-hover: #F9C623;
+$gradient: linear-gradient(180deg, #009BDC 0%, #F9C623 100%) !default;
+$gray: #666666 !default;
+$light-gray: #F1F1F1 !default; // gray-2
+$lighter-gray: #FCFCFC !default; // gray-3
+$white: #FFFFFF !default;
+$black: #222222 !default;
 
 // secondary palette
-$yellow: #F9C623;
-$red: #DB3E0B;
-$green: #1BB53A;
+$yellow: #F9C623 !default;
+$red: #DB3E0B !default;
+$green: #1BB53A !default;
 
 // Other styles
-$shadow-color: rgba(0, 0, 0, .1);
-$shadow: 0 0 8px $shadow-color;
-$font-family: 'Raleway', sans-serif !important;
-
-// Theme
-$primary: #e46f2a;
-$secondary: #F9C623;
-$text: $gray;
-
-// Custom
-$atuacao: #009164;
-$comercial: #F9C623;
-$social: #e46f2a;
+$shadow-color: rgba(0, 0, 0, .1) !default;
+$shadow: 0 0 8px $shadow-color !default;
+$font-family: 'Raleway', sans-serif !important !default;
 
 //Charts
-$chart1: #F9C623;
-$chart2: #E46F2A;
-$chart3: #58394e;
-$chart4: #00664a;
-$chart5: #009164;
+$chart1: #F9C623 !default;
+$chart2: #E46F2A !default;
+$chart3: #58394e !default;
+$chart4: #00664a !default;
+$chart5: #009164 !default;
 
 //screen sizes
 $mobileS: '320px';
@@ -40,12 +35,12 @@ $tablet: '768px';
 $wide: '1024px';
 
 //text sizes and/or spaces
-$normal: 1rem;
-$smaller: 1rem;
-$big: 1.125rem;
-$bigger: 1.25rem;
-$biggest: 1.5rem;
-$double: 2rem;
-$triple: 3rem;
-$fivetimes: 5rem;
-$tentimes: 10rem;
+$normal: 1rem !default;
+$smaller: 1rem !default;
+$big: 1.125rem !default;
+$bigger: 1.25rem !default;
+$biggest: 1.5rem !default;
+$double: 2rem !default;
+$triple: 3rem !default;
+$fivetimes: 5rem !default;
+$tentimes: 10rem !default;

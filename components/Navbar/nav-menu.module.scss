@@ -1,4 +1,4 @@
-@import './../../sass/theme/dorothy_variables';
+@use './../../sass/theme/dorothy_variables';
 
 .nav-menu {
     display: flex;
@@ -45,7 +45,7 @@
             height: 1.25rem;
             width: unset;
             transition: .25s ease;
-            stroke: $text;
+            stroke: $gray;
 
             @media (max-width: $tablet) {
                 height: 1.5rem;
@@ -62,7 +62,7 @@
         white-space: nowrap;
         font-size: .875rem;
         font-weight: 600;
-        color: $text;
+        color: $gray;
         transition: .25s ease;
         pointer-events: none;
     }
