@@ -1,3 +1,5 @@
+@use '../../../sass/theme/app_variables' as *;
+
 .input-text {
     width: 100%;
     background-color: rgba($primary, .05) !important;

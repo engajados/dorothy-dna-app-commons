@@ -1,9 +1,9 @@
 // primary palette
 $primary: #009BDC !default;
-$primary-hover: #009BDC !default; //review
+$primary-hover: #0089C2 !default; //review
 $secondary: #F9C623 !default;
-$secondary-hover: #F9C623;
-$gradient: linear-gradient(180deg, #009BDC 0%, #F9C623 100%) !default;
+$secondary-hover: #C2BF0B !default;
+$gradient: linear-gradient(180deg, $primary 0%, $secondary 100%) !default;
 $gray: #666666 !default;
 $light-gray: #F1F1F1 !default; // gray-2
 $lighter-gray: #FCFCFC !default; // gray-3
@@ -18,7 +18,8 @@ $green: #1BB53A !default;
 // Other styles
 $shadow-color: rgba(0, 0, 0, .1) !default;
 $shadow: 0 0 8px $shadow-color !default;
-$font-family: 'Raleway', sans-serif !important !default;
+$font-family: 'Raleway',
+  sans-serif !important !default;
 
 //Charts
 $chart1: #F9C623 !default;
@@ -28,11 +29,11 @@ $chart4: #00664a !default;
 $chart5: #009164 !default;
 
 //screen sizes
-$mobileS: '320px';
-$mobileM: '375px';
-$mobileL: '425px';
-$tablet: '768px';
-$wide: '1024px';
+$mobileS: '320px' !default;
+$mobileM: '375px' !default;
+$mobileL: '425px' !default;
+$tablet: '768px' !default;
+$wide: '1024px' !default;
 
 //text sizes and/or spaces
 $normal: 1rem !default;

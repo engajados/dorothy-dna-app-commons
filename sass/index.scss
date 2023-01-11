@@ -1,9 +1,9 @@
-@use 'theme/dorothy_variables';
-@use 'base/dorothy_reset';
-@use 'base/dorothy_page';
-@use 'base/dorothy_buttons';
-@use 'base/dorothy_grid';
-@use 'base/dorothy_utilities';
-@use 'base/dorothy_forms';
-@use 'base/dorothy_charts';
-@use 'theme/dorothy_texts';
+@forward 'theme/dorothy_variables';
+@use 'base/dorothy_reset' as *;
+@use 'base/dorothy_page' as *;
+@use 'base/dorothy_buttons' as *;
+@use 'base/dorothy_grid' as *;
+@use 'base/dorothy_utilities' as *;
+@use 'base/dorothy_forms' as *;
+@use 'base/dorothy_charts' as *;
+@use 'theme/dorothy_texts' as *;
