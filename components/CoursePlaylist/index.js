@@ -7,7 +7,7 @@ import Lock from './../../components/ui/icons/Lock';
 import styles from './course_playlist.module.scss';
 // import { useState, useEffect } from 'react';
 
-export const coursePlaylist = ({
+export const CoursePlaylist = ({
   hasBiggerThumb = false,
   courseClasses,
   currentCourseId,
@@ -25,7 +25,7 @@ export const coursePlaylist = ({
               key={cl.id}
               onClick={() => changeClass(currentCourseId, cl.id)}
             >
-              <courseClass
+              <CourseClass
                 thumb={cl.thumb}
                 title={cl.title}
                 /* subscribers={cl.subscribers}
@@ -38,7 +38,7 @@ export const coursePlaylist = ({
   );
 };
 
-const courseClass = ({ thumb, title, /* subscribers, watched, */ status = true }) => {
+const CourseClass = ({ thumb, title, /* subscribers, watched, */ status = true }) => {
   let icon = status ? <Check /> : <Lock />;
 
   return (
