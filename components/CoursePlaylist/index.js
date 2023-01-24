@@ -5,6 +5,7 @@ import Check from './../../components/ui/icons/Check';
 import Lock from './../../components/ui/icons/Lock';
 /* styles */
 import styles from './course_playlist.module.scss';
+import { useEffect } from 'react';
 // import { useState, useEffect } from 'react';
 
 export const CoursePlaylist = ({
@@ -26,10 +27,9 @@ export const CoursePlaylist = ({
               onClick={() => changeClass(currentCourseId, cl.id)}
             >
               <CourseClass
-                thumb={cl.thumb}
+                thumb={cl.id.toString() !== currentClassId && backgroundImage} /* {cl.thumb} */
                 title={cl.title}
-                /* subscribers={cl.subscribers}
-                  watched={cl.watched} */
+                status={cl.watched}
               />
             </div>
           ))}
@@ -38,7 +38,11 @@ export const CoursePlaylist = ({
   );
 };
 
-const CourseClass = ({ thumb, title, /* subscribers, watched, */ status = true }) => {
+const CourseClass = ({ thumb, title, /* subscribers, watched, */ status }) => {
+  useEffect(() => {
+    console.log('status', status);
+  }, [status]);
+
   let icon = status ? <Check /> : <Lock />;
 
   return (
@@ -47,9 +51,11 @@ const CourseClass = ({ thumb, title, /* subscribers, watched, */ status = true }
         <div className={styles.class_status}>
           <span className={`${styles[status ? 'done' : 'error']}`}>{icon}</span>
         </div>
-        <div className={styles.class_thumb}>
-          <img src={backgroundImage} className={styles.the_thumb} alt="folhas de um pé de tomate" />
-        </div>
+        {thumb && (
+          <div className={styles.class_thumb}>
+            <img src={thumb} className={styles.the_thumb} alt="folhas de um pé de tomate" />
+          </div>
+        )}
         <div className={styles.class_info}>
           <div>
             <h3>{title}</h3>
