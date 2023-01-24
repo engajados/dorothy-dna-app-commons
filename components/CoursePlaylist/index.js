@@ -1,20 +1,57 @@
+/* react, libs */
+import { useQueryClient, useMutation } from 'react-query';
+import axios from 'axios';
+
+/* dorothy */
+import { useDorothy } from 'dorothy-dna-react';
+
 /* images */
 import backgroundImage from './test.jpg';
+
 /* icons */
 import Check from './../../components/ui/icons/Check';
 import Lock from './../../components/ui/icons/Lock';
+
 /* styles */
 import styles from './course_playlist.module.scss';
-import { useEffect } from 'react';
-// import { useState, useEffect } from 'react';
 
-export const CoursePlaylist = ({
+/* components */
+/* import courseThumb */
+
+/* TODO:hasBiggerThumb has to come from parent component */
+export default function CoursePlaylist({
   hasBiggerThumb = false,
   courseClasses,
   currentCourseId,
   currentClassId,
-  changeClass,
-}) => {
+  handleClassChange,
+}) {
+  const queryClient = useQueryClient();
+  const { server } = useDorothy();
+
+  const mutations = {
+    markAsWatched: useMutation(
+      entity => {
+        if (!entity.newCourseIdRoute || !entity.newClassIdRoute) return;
+        let endpoint = `${server}learning/course/${entity.newCourseIdRoute}/class/${entity.newClassIdRoute}/watch`;
+        if (entity.watched) {
+          /* edit */
+          return axios.put(endpoint, entity);
+        } else {
+          /* insert */
+          return axios.post(endpoint, entity);
+        }
+      },
+      { onSuccess: () => queryClient.invalidateQueries('course_classes') },
+    ),
+  };
+
+  const handleWatched = async (newCourseIdRoute, newClassIdRoute, watched) => {
+    await mutations.markAsWatched.mutateAsync({ newCourseIdRoute, newClassIdRoute, watched });
+
+    handleClassChange(newCourseIdRoute, newClassIdRoute);
+  };
+
   return (
     <>
       <div className={styles.card_box}>
@@ -22,34 +59,31 @@ export const CoursePlaylist = ({
         {courseClasses &&
           courseClasses.map(cl => (
             <div
+              onClick={() => handleWatched(currentCourseId, cl.id, cl.watched)}
               className={`row ${styles.recoil} ${cl.id.toString() === currentClassId ? styles.active : ''}`}
               key={cl.id}
-              onClick={() => changeClass(currentCourseId, cl.id)}
             >
               <CourseClass
-                thumb={cl.id.toString() !== currentClassId && backgroundImage} /* {cl.thumb} */
+                thumb={cl.id.toString() !== currentClassId && backgroundImage}
                 title={cl.title}
-                status={cl.watched}
+                watched={cl.watched}
+                isWatching={cl.id.toString() !== currentClassId}
               />
             </div>
           ))}
       </div>
     </>
   );
-};
+}
 
-const CourseClass = ({ thumb, title, /* subscribers, watched, */ status }) => {
-  useEffect(() => {
-    console.log('status', status);
-  }, [status]);
-
-  let icon = status ? <Check /> : <Lock />;
+const CourseClass = ({ thumb, title, watched, isWatching }) => {
+  let icon = watched ? isWatching ? <></> : <Check /> : <Lock />;
 
   return (
     <>
       <div className={styles.course_class}>
         <div className={styles.class_status}>
-          <span className={`${styles[status ? 'done' : 'error']}`}>{icon}</span>
+          <span className={`${styles[watched ? 'done' : 'error']}`}>{icon}</span>
         </div>
         {thumb && (
           <div className={styles.class_thumb}>
