@@ -32,8 +32,8 @@ export default function CoursePlaylist({
   const mutations = {
     markAsWatched: useMutation(
       entity => {
-        if (!entity.newCourseIdRoute || !entity.newClassIdRoute) return;
-        let endpoint = `${server}learning/course/${entity.newCourseIdRoute}/class/${entity.newClassIdRoute}/watch`;
+        if (!entity.course_id || !entity.class_id) return;
+        let endpoint = `${server}learning/course/${entity.course_id}/class/${entity.class_id}/watch`;
         if (entity.watched) {
           /* edit */
           return axios.put(endpoint, entity);
@@ -47,7 +47,7 @@ export default function CoursePlaylist({
   };
 
   const handleWatched = async (newCourseIdRoute, newClassIdRoute, watched) => {
-    await mutations.markAsWatched.mutateAsync({ newCourseIdRoute, newClassIdRoute, watched });
+    await mutations.markAsWatched.mutateAsync({ course_id: newCourseIdRoute, class_id: newClassIdRoute, watched });
 
     handleClassChange(newCourseIdRoute, newClassIdRoute);
   };
@@ -77,7 +77,7 @@ export default function CoursePlaylist({
 }
 
 const CourseClass = ({ thumb, title, watched, isWatching }) => {
-  let icon = watched ? isWatching ? <></> : <Check /> : <Lock />;
+  let icon = watched ? !isWatching ? <div className={styles.is_watching}></div> : <Check /> : <Lock />;
 
   return (
     <>
