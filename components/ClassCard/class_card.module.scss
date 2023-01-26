@@ -1,0 +1,22 @@
+@use '../../../sass/theme/app_variables' as *;
+
+.video_wrapper {
+  border-radius: .5rem;
+  box-shadow: $shadow;
+  display: flex;
+  flex-flow: column nowrap;
+
+  .video_player {
+    max-height: 48.25rem;
+
+    >video {
+
+      border-radius: .5rem;
+    }
+
+  }
+
+  .class_info {
+    padding: 2rem;
+  }
+}
