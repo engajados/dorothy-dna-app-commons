@@ -16,11 +16,11 @@ import Lock from './../../components/ui/icons/Lock';
 import styles from './course_playlist.module.scss';
 
 /* components */
-/* import courseThumb */
+import CourseThumb from '../CourseThumb';
 
 /* TODO:hasBiggerThumb has to come from parent component */
 export default function CoursePlaylist({
-  hasBiggerThumb = false,
+  hasBiggerThumb,
   courseClasses,
   currentCourseId,
   currentClassId,
@@ -55,7 +55,7 @@ export default function CoursePlaylist({
   return (
     <>
       <div className={styles.card_box}>
-        {hasBiggerThumb && <h1>this is a bigger thumb</h1>}
+        {hasBiggerThumb && <CourseThumb />}
         {courseClasses &&
           courseClasses.map(cl => (
             <div
@@ -87,7 +87,7 @@ const CourseClass = ({ thumb, title, watched, isWatching }) => {
         </div>
         {thumb && (
           <div className={styles.class_thumb}>
-            <img src={thumb} className={styles.the_thumb} alt="folhas de um pé de tomate" />
+            <img src={thumb} className={styles.small_thumb} alt="folhas de um pé de tomate" />
           </div>
         )}
         <div className={styles.class_info}>
