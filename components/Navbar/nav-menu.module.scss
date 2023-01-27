@@ -10,7 +10,7 @@
         flex-wrap: nowrap;
         order: 0;
         flex: 1 1;
-        box-shadow: 0px 2px 6px $shadow-color;
+        box-shadow: $shadow-2;
     }
 
     &:hover {
