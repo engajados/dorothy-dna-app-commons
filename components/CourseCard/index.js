@@ -1,6 +1,9 @@
 /* styles */
 import styles from './course_card.module.scss';
 
+/* images */
+import backgroundImage from './test.jpg';
+
 /* icons */
 import Users from './../../components/ui/icons/Users';
 import Clock from './../../components/ui/icons/Clock';
@@ -10,8 +13,9 @@ export default function CourseCard({ title, description, steps, subscribes, dura
   return (
     <>
       <div className={styles.banner_wrapper}>
+        <div className={styles.course_thumb} style={{ backgroundImage: `url(${backgroundImage})` }}></div>
         <div className={styles.course_info}>
-          <h2 className={`mt-2`}>{title}</h2>
+          <h2>{title}</h2>
           <div className={styles.course_specs}>
             <span>
               <Stack />
@@ -26,10 +30,10 @@ export default function CourseCard({ title, description, steps, subscribes, dura
               <h3>{subscribes} inscritos</h3>
             </span>
           </div>
-          <p className="mt-4">{description}</p>
+          <p>{description}</p>
         </div>
-        <hr className={`mt-4 mb-4 ${styles.separator}`} />
-        <div className={`mb-2 ${styles.course_goals}`}>
+        <hr className={`${styles.separator}`} />
+        <div className={`${styles.course_goals}`}>
           <div>
             <h3>Conquistas: </h3>
             <BadgeList badges={badges} />
@@ -51,5 +55,5 @@ const BadgeList = ({ badges }) => {
 
 const CertificatesList = ({ certificates }) => {
   //https://codesandbox.io/s/f9524f?file=/App.js&utm_medium=sandpack
-  return <>badges here</>;
+  return <>certificates here</>;
 };
