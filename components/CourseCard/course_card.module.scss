@@ -1,7 +1,7 @@
 @use '../../../sass/theme/app_variables' as *;
 
 .banner_wrapper {
-  border-radius: .5rem;
+  border-radius: $border-radius-1;
   box-shadow: $shadow-1;
   display: flex;
   flex-flow: column nowrap;
@@ -9,7 +9,7 @@
   .course_thumb {
     background-size: cover;
     height: 25rem;
-    border-radius: .5rem;
+    border-radius: $border-radius-1;
     width: auto;
     z-index: 1;
   }
