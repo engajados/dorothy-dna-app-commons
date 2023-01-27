@@ -6,6 +6,10 @@
     justify-content: center;
     flex-flow: column wrap;
     height: 400px;
+    border-radius: 8px;
+    max-width: 1824px;
+
+
 }
 .text{
     text-align: center;
@@ -13,4 +17,14 @@
 .button{
     align-self: center;
     margin-top: 20px;
+    /* Layout Properties */
+// top: 387px;
+// left: 901px;
+// width: 118px;
+// height: 32px;
+/* UI Properties */
+background: var(--primary) 0% 0% no-repeat padding-box;
+background: #009BDC 0% 0% no-repeat padding-box;
+border-radius: 16px;
+opacity: 1;
 }
