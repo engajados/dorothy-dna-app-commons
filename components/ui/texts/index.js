@@ -1,13 +1,13 @@
 import styles from './texts.module.scss';
 
-export const text1 = ({ children }) => {
-  return <h1 className={styles.text1}>{children}</h1>;
+export const Text1 = ({ children }) => {
+  return <span className={styles.text1}>{children}</span>;
 };
 
-export const text2 = ({ children }) => {
-  return <h2 className={styles.text2}>{children}</h2>;
+export const Text2 = ({ children }) => {
+  return <span className={styles.text2}>{children}</span>;
 };
 
-export const text3 = ({ children }) => {
-  return <h3 className={styles.text3}>{children}</h3>;
+export const Text3 = ({ children }) => {
+  return <span className={styles.text3}>{children}</span>;
 };

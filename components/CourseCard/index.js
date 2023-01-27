@@ -9,37 +9,45 @@ import Users from './../../components/ui/icons/Users';
 import Clock from './../../components/ui/icons/Clock';
 import Stack from './../../components/ui/icons/Stack';
 
+/* commons */
+import { Title2, Title3 } from '../ui/titles';
+import { Text1 } from '../ui/texts';
+
 export default function CourseCard({ title, description, steps, subscribes, duration, badges, certificates }) {
   return (
     <>
       <div className={styles.banner_wrapper}>
         <div className={styles.course_thumb} style={{ backgroundImage: `url(${backgroundImage})` }}></div>
         <div className={styles.course_info}>
-          <h2>{title}</h2>
+          <Title2>
+            <strong>
+              {title} {/* - {subtitle} */}
+            </strong>
+          </Title2>
           <div className={styles.course_specs}>
             <span>
               <Stack />
-              <h3>{steps} etapas</h3>
+              <Title3>{steps} etapas</Title3>
             </span>
             <span>
               <Clock />
-              <h3>{duration} horas</h3>
+              <Title3>{duration} horas</Title3>
             </span>
             <span>
               <Users />
-              <h3>{subscribes} inscritos</h3>
+              <Title3>{subscribes} inscritos</Title3>
             </span>
           </div>
-          <p>{description}</p>
+          <Text1>{description}</Text1>
         </div>
         <hr className={`${styles.separator}`} />
         <div className={`${styles.course_goals}`}>
           <div>
-            <h3>Conquistas: </h3>
+            <Title3>Conquistas: </Title3>
             <BadgeList badges={badges} />
           </div>
           <div>
-            <h3>Certificados: </h3>
+            <Title3>Certificados: </Title3>
             <CertificatesList certificates={certificates} />
           </div>
         </div>

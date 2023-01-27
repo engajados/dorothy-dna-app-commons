@@ -18,6 +18,9 @@ import styles from './course_playlist.module.scss';
 /* components */
 import CourseThumb from '../CourseThumb';
 
+/* commons */
+import { Title3, Title6 } from '../ui/titles';
+
 /* TODO:hasBiggerThumb has to come from parent component */
 export default function CoursePlaylist({
   hasBiggerThumb,
@@ -92,10 +95,10 @@ const CourseClass = ({ thumb, title, watched, isWatching }) => {
         )}
         <div className={styles.class_info}>
           <div>
-            <h3>{title}</h3>
+            <Title3>{title}</Title3>
           </div>
           <div>
-            <h6 className={``}>155 visualizações</h6>
+            <Title6 className={``}>155 visualizações</Title6>
           </div>
         </div>
       </div>

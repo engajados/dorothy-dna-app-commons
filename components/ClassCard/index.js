@@ -1,6 +1,10 @@
 /* styles */
 import styles from './class_card.module.scss';
 
+/* commons */
+import { Title2, Title3 } from '../ui/titles';
+import { Text1, Text2 } from '../ui/texts';
+
 export default function ClassCard({ title, subtitle, description, materials }) {
   return (
     <>
@@ -9,15 +13,19 @@ export default function ClassCard({ title, subtitle, description, materials }) {
           <ClassVideo src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4" />
         </div>
         <div className={styles.class_info}>
-          <h2>
-            {title} - {subtitle}
-          </h2>
-          <p className="mt-2">{description}</p>
+          <Title2>
+            <strong>
+              {title} - {subtitle}
+            </strong>
+          </Title2>
           <div className="mt-4">
-            <h3>Materiais de Apoio:</h3>
-            <p className="mt-2">
+            <Text1>{description}</Text1>
+          </div>
+          <div className="mt-4">
+            <Title3>Materiais de Apoio:</Title3>
+            <Text2 className="mt-2">
               {materials ? /* materials.map() */ 'TODO: [listar materiais]' : 'Sem nada por aqui!'}
-            </p>
+            </Text2>
           </div>
         </div>
       </div>

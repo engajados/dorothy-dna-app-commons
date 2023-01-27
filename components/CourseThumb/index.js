@@ -17,6 +17,9 @@ import Stack from './../../components/ui/icons/Stack';
 /* styles */
 import styles from './course_thumb.module.scss';
 
+/* commons */
+import { Title2, Title3 } from '../ui/titles';
+
 export default function CourseThumb({ steps = 9, duration = '2h', progress }) {
   const [showPlayCourseButton, _showPlayCourseButton] = useState(false);
   /* 
@@ -59,7 +62,7 @@ export default function CourseThumb({ steps = 9, duration = '2h', progress }) {
         <div className={styles.thumb_box}>
           {showPlayCourseButton && (
             <span className={styles.course_watch}>
-              <h2>{progress ? 'Continuar' : 'Começar'} curso</h2>
+              <Title2>{progress ? 'Continuar' : 'Começar'} curso</Title2>
               <Play />
             </span>
           )}
@@ -69,11 +72,11 @@ export default function CourseThumb({ steps = 9, duration = '2h', progress }) {
             <div className={styles.course_minidash}>
               <span>
                 <Stack />
-                <h3>{steps}</h3>
+                <Title3>{steps}</Title3>
               </span>
               <span>
                 <Clock />
-                <h3>{duration}</h3>
+                <Title3>{duration}</Title3>
               </span>
             </div>
           </div>

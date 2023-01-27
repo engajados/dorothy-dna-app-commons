@@ -13,6 +13,9 @@ import styles from './login.module.scss';
 
 import { layoutTabletMQ } from '../../../utils/configs';
 
+/* commons */
+import { Title4 } from '../ui/titles';
+
 const LoginPanel = ({ onLogin, next, doing_login, appLogo, subTitle }) => {
   const { server } = useDorothy();
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
@@ -162,7 +165,7 @@ const LoginPanel = ({ onLogin, next, doing_login, appLogo, subTitle }) => {
               <Card title="" headerless bottom>
                 <div className="p-4">
                   <div className="row mb-3">
-                    <h4>Acesse o sistema</h4>
+                    <Title4>Acesse o sistema</Title4>
                   </div>
                   <div className="row mb-3">
                     <TextField
@@ -205,7 +208,7 @@ const LoginPanel = ({ onLogin, next, doing_login, appLogo, subTitle }) => {
               <Card title="" headerless bottom>
                 <div className="p-4">
                   <div className="row mb-3">
-                    <h4>Recuperação de senha</h4>
+                    <Title4>Recuperação de senha</Title4>
                   </div>
                   <div className="row mb-3">
                     {!sent && (
@@ -242,7 +245,7 @@ const LoginPanel = ({ onLogin, next, doing_login, appLogo, subTitle }) => {
               <Card title="" headerless bottom>
                 <div className="p-4">
                   <div className="row mb-3">
-                    <h4>{verified === 'success' ? 'Digite a nova senha' : 'Recuperação de senha'}</h4>
+                    <Title4>{verified === 'success' ? 'Digite a nova senha' : 'Recuperação de senha'}</Title4>
                   </div>
 
                   {verified === 'no' && <div className="row mb-3">Verificando...</div>}
