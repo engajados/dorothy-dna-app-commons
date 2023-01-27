@@ -1,0 +1,16 @@
+.banner{
+    background-image: url('teste.jpg');
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column wrap;
+    height: 400px;
+}
+.text{
+    text-align: center;
+}
+.button{
+    align-self: center;
+    margin-top: 20px;
+}
