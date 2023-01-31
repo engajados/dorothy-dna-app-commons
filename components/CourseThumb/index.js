@@ -6,9 +6,6 @@ import axios from 'axios';
 /* dorothy */
 /* import { useDorothy } from 'dorothy-dna-react'; */
 
-/* images */
-import backgroundImage from './test.jpg';
-
 /* icons */
 import Play from './../../components/ui/icons/Play';
 import Clock from './../../components/ui/icons/Clock';
@@ -20,7 +17,7 @@ import styles from './course_thumb.module.scss';
 /* commons */
 import { Title2, Title3 } from '../ui/titles';
 
-export default function CourseThumb({ steps = 9, duration = '2h', progress }) {
+export default function CourseThumb({ textToShow, showInfo, thumbImg, steps, duration, progress }) {
   const [showPlayCourseButton, _showPlayCourseButton] = useState(false);
   /* 
   const queryClient = useQueryClient();
@@ -56,30 +53,32 @@ export default function CourseThumb({ steps = 9, duration = '2h', progress }) {
         <div
           className={styles.thumb_image}
           style={{
-            backgroundImage: `url(${backgroundImage})`,
+            backgroundImage: `url(${thumbImg})`,
           }}
-        ></div>
+        />
         <div className={styles.thumb_box}>
           {showPlayCourseButton && (
             <span className={styles.course_watch}>
-              <Title2>{progress ? 'Continuar' : 'Começar'} curso</Title2>
+              <Title2>{textToShow} curso</Title2>
               <Play />
             </span>
           )}
 
-          <div className={styles.course_info}>
-            <div className={styles.progress_bar}>progress bar</div>
-            <div className={styles.course_minidash}>
-              <span>
-                <Stack />
-                <Title3>{steps}</Title3>
-              </span>
-              <span>
-                <Clock />
-                <Title3>{duration}</Title3>
-              </span>
+          {showInfo && (
+            <div className={styles.course_info}>
+              <div className={styles.progress_bar}>progress bar</div>
+              <div className={styles.course_minidash}>
+                <span>
+                  <Stack />
+                  <Title3>{steps}</Title3>
+                </span>
+                <span>
+                  <Clock />
+                  <Title3>{duration}</Title3>
+                </span>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </>
