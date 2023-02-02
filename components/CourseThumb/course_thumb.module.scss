@@ -7,7 +7,7 @@
   position: relative;
   z-index: 0;
   display: flex;
-  width: 100%;
+  max-width: 27.25rem;
 
   &:hover {
     .thumb_image {
@@ -56,7 +56,33 @@
       color: $white;
 
       .progress_bar {
+        align-self: center;
+        margin-right: 5rem;
+        height: 0.5rem;
+        background-color: $white;
         width: 100%;
+
+        .bar {
+          display: block;
+          background-color: $green;
+          height: 100%;
+        }
+
+      }
+
+      .progress_done {
+        display: flex;
+        align-items: flex-end;
+
+        svg {
+          height: 1.5rem;
+          width: unset;
+          border-radius: $border-radius-2;
+          padding: 0.125rem;
+          background-color: $green;
+          color: $white;
+        }
+
       }
 
       .course_minidash {

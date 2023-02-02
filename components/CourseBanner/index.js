@@ -1,6 +1,7 @@
 import React from 'react';
-import { Container, Button, Typography } from '@mui/material';
+import { Container, Button } from '@mui/material';
 import styles from './course_banner.module.scss';
+import { Title1 } from './../ui/titles';
 
 export default function CourseBanner({
   handleClassChange,
@@ -10,9 +11,9 @@ export default function CourseBanner({
 }) {
   return (
     <Container className={styles.banner}>
-      <Typography className={styles.text} variant="h5">
-        {textNameTitle}
-      </Typography>
+      <div className={styles.custom_title}>
+        <Title1>{textNameTitle}</Title1>
+      </div>
       <Button variant="contained" className={styles.button} onClick={() => handleClassChange(selectedCourseId)}>
         {textNameButton}
       </Button>

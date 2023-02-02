@@ -1,4 +1,6 @@
-.banner{
+@use '../../../sass/theme/app_variables' as *;
+
+.banner {
     background-image: url('teste.jpg');
     background-size: cover;
     display: flex;
@@ -6,25 +8,22 @@
     justify-content: center;
     flex-flow: column wrap;
     height: 400px;
-    border-radius: 8px;
-    max-width: 1824px;
-
+    border-radius: $border-radius-1;
+    /* filter: brightness(75%); */
 
 }
-.text{
-    text-align: center;
+
+.custom_title {
+    >* {
+        color: $white;
+        font-weight: 700;
+    }
 }
-.button{
+
+.button {
+    margin-top: 2rem;
     align-self: center;
-    margin-top: 20px;
-    /* Layout Properties */
-// top: 387px;
-// left: 901px;
-// width: 118px;
-// height: 32px;
-/* UI Properties */
-background: var(--primary) 0% 0% no-repeat padding-box;
-background: #009BDC 0% 0% no-repeat padding-box;
-border-radius: 16px;
-opacity: 1;
+    border-radius: $border-radius-2;
+    background-color: $primary;
+    opacity: 1;
 }

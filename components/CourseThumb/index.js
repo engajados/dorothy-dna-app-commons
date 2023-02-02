@@ -1,15 +1,11 @@
 /* react, libs */
 import { useState } from 'react';
-/* import { useQueryClient, useMutation } from 'react-query';
-import axios from 'axios';
- */
-/* dorothy */
-/* import { useDorothy } from 'dorothy-dna-react'; */
 
 /* icons */
 import Play from './../../components/ui/icons/Play';
 import Clock from './../../components/ui/icons/Clock';
 import Stack from './../../components/ui/icons/Stack';
+import Check from './../../components/ui/icons/Check';
 
 /* styles */
 import styles from './course_thumb.module.scss';
@@ -17,31 +13,16 @@ import styles from './course_thumb.module.scss';
 /* commons */
 import { Title2, Title3 } from '../ui/titles';
 
-export default function CourseThumb({ textToShow, showInfo, thumbImg, steps, duration, progress }) {
+export default function CourseThumb({
+  textToShow,
+  showInfo,
+  thumbImg,
+  steps,
+  duration,
+  classesWatched,
+  handleClassChange,
+}) {
   const [showPlayCourseButton, _showPlayCourseButton] = useState(false);
-  /* 
-  const queryClient = useQueryClient();
-  const { server } = useDorothy();
-  const mutations = {
-    markAsWatched: useMutation(
-      entity => {
-        if (!entity.course_id || !entity.class_id) return;
-        let endpoint = `${server}learning/course/${entity.course_id}/class/${entity.class_id}/watch`;
-        if (entity.watched) {
-          // edit
-          return axios.put(endpoint, entity);
-        } else {
-          // insert
-          return axios.post(endpoint, entity);
-        }
-      },
-      { onSuccess: () => queryClient.invalidateQueries('course_classes') },
-    ),
-  }; */
-
-  /* useEffect(() => {
-    console.log('_showPlayCourseButton', showPlayCourseButton);
-  }, [showPlayCourseButton]); */
 
   return (
     <>
@@ -49,6 +30,7 @@ export default function CourseThumb({ textToShow, showInfo, thumbImg, steps, dur
         className={styles.thumb_wrapper}
         onMouseOver={() => _showPlayCourseButton(true)}
         onMouseLeave={() => _showPlayCourseButton(false)}
+        onClick={handleClassChange}
       >
         <div
           className={styles.thumb_image}
@@ -66,7 +48,8 @@ export default function CourseThumb({ textToShow, showInfo, thumbImg, steps, dur
 
           {showInfo && (
             <div className={styles.course_info}>
-              <div className={styles.progress_bar}>progress bar</div>
+              <ProgressBar steps={steps} classesWatched={classesWatched} />
+
               <div className={styles.course_minidash}>
                 <span>
                   <Stack />
@@ -74,7 +57,7 @@ export default function CourseThumb({ textToShow, showInfo, thumbImg, steps, dur
                 </span>
                 <span>
                   <Clock />
-                  <Title3>{duration}</Title3>
+                  <Title3>{duration}h</Title3>
                 </span>
               </div>
             </div>
@@ -84,3 +67,26 @@ export default function CourseThumb({ textToShow, showInfo, thumbImg, steps, dur
     </>
   );
 }
+
+const ProgressBar = ({ steps, classesWatched }) => {
+  const [progress, _progress] = useState(1);
+
+  useState(() => {
+    _progress((classesWatched / steps) * 100);
+  }, [steps, classesWatched]);
+
+  return (
+    <>
+      {progress < 100 && (
+        <div className={styles.progress_bar}>
+          <span className={styles.bar} style={{ width: `${progress}%` }} />
+        </div>
+      )}
+      {progress >= 100 && (
+        <div className={styles.progress_done}>
+          <Check />
+        </div>
+      )}
+    </>
+  );
+};

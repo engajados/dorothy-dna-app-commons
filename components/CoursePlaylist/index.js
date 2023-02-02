@@ -5,9 +5,6 @@ import axios from 'axios';
 /* dorothy */
 import { useDorothy } from 'dorothy-dna-react';
 
-/* images */
-import backgroundImage from './test.jpg';
-
 /* icons */
 import Check from './../../components/ui/icons/Check';
 import Lock from './../../components/ui/icons/Lock';
@@ -78,7 +75,12 @@ export default function CoursePlaylist({
   return (
     <>
       <div className={styles.card_box}>
-        <CourseThumb textToShow={textToShow} showInfo={false} thumbImg={nextClassThumb} />
+        <CourseThumb
+          textToShow={textToShow}
+          showInfo={false}
+          thumbImg={nextClassThumb}
+          handleClassChange={handleClassChange}
+        />
 
         {courseClasses &&
           courseClasses.map(cl => (
