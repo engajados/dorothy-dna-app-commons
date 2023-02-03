@@ -1,9 +1,6 @@
 /* styles */
 import styles from './course_card.module.scss';
 
-/* images */
-import backgroundImage from './test.jpg';
-
 /* icons */
 import Users from './../../components/ui/icons/Users';
 import Clock from './../../components/ui/icons/Clock';
@@ -13,11 +10,11 @@ import Stack from './../../components/ui/icons/Stack';
 import { Title2, Title3 } from '../ui/titles';
 import { Text1 } from '../ui/texts';
 
-export default function CourseCard({ title, description, steps, subscribes, duration, badges, certificates }) {
+export default function CourseCard({ title, description, steps, thumb, subscribes, duration, badges, certificates }) {
   return (
     <>
       <div className={styles.banner_wrapper}>
-        <div className={styles.course_thumb} style={{ backgroundImage: `url(${backgroundImage})` }}></div>
+        <div className={styles.course_thumb} style={{ backgroundImage: `url(${thumb})` }} />
         <div className={styles.course_info}>
           <Title2>
             <strong>
@@ -57,11 +54,9 @@ export default function CourseCard({ title, description, steps, subscribes, dura
 }
 
 const BadgeList = ({ badges }) => {
-  //https://codesandbox.io/s/f9524f?file=/App.js&utm_medium=sandpack
   return <>badges here</>;
 };
 
 const CertificatesList = ({ certificates }) => {
-  //https://codesandbox.io/s/f9524f?file=/App.js&utm_medium=sandpack
   return <>certificates here</>;
 };

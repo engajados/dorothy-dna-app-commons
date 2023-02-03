@@ -19,10 +19,10 @@ import CourseThumb from '../CourseThumb';
 import { Title3, Title6 } from '../ui/titles';
 import { useEffect, useState } from 'react';
 
-/* TODO:hasBiggerThumb has to come from parent component */
 export default function CoursePlaylist({
   isUserEnrolled,
   isDone,
+  hideThumb = false,
   courseClasses,
   currentCourseId,
   currentClassId,
@@ -32,7 +32,9 @@ export default function CoursePlaylist({
   const { server } = useDorothy();
 
   const [textToShow, _textToShow] = useState(null);
-  const [nextClassThumb, _nextClassThumb] = useState(null);
+  const [nextClass, _nextClass] = useState(null);
+
+  const [playlistHeight, _playlistHeight] = useState(`100vh`);
 
   const mutations = {
     markAsWatched: useMutation(
@@ -58,45 +60,74 @@ export default function CoursePlaylist({
   };
 
   useEffect(() => {
+    _playlistHeight(!hideThumb ? `calc(100vh - 26rem)` : `calc(100vh - 10.5rem)`);
+  }, [hideThumb]);
+
+  useEffect(() => {
     if (!courseClasses) return;
+    if (courseClasses.length === 0) return;
+
+    let firstClass = courseClasses[0];
+
     let mostAdvancedClass = courseClasses.filter(course => course.watched).sort((a, b) => b.order_seq - a.order_seq)[0];
+
+    if (!mostAdvancedClass) {
+      _nextClass(firstClass);
+      return;
+    }
 
     let mostAdvancedClassIndex = courseClasses.findIndex(cl => cl.id === mostAdvancedClass.id);
 
     let next = courseClasses[mostAdvancedClassIndex + 1];
-    let first = courseClasses[0];
 
-    _textToShow(isUserEnrolled ? (isDone ? 'Recomeçar' : 'Começar') : 'Continuar');
-    _nextClassThumb(!next ? first.thumb : next.thumb);
+    _nextClass(!next ? firstClass : next);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [courseClasses]);
 
+  useEffect(() => {
+    _textToShow(handleTextMessage(isUserEnrolled, isDone));
+  }, [isUserEnrolled, isDone]);
+
+  const handleTextMessage = (isUserEnrolled, isDone) => {
+    let textMessage = 'Continuar';
+
+    if (isDone) textMessage = 'Recomeçar';
+    else if (!isUserEnrolled) textMessage = 'Começar';
+    return textMessage;
+  };
+
   return (
     <>
       <div className={styles.card_box}>
-        <CourseThumb
-          textToShow={textToShow}
-          showInfo={false}
-          thumbImg={nextClassThumb}
-          handleClassChange={handleClassChange}
-        />
-
-        {courseClasses &&
-          courseClasses.map(cl => (
-            <div
-              onClick={() => handleWatched(currentCourseId, cl.id, cl.watched)}
-              className={`row ${styles.recoil} ${cl.id.toString() === currentClassId ? styles.active : ''}`}
-              key={cl.id}
-            >
-              <CourseClass
-                thumb={cl.thumb}
-                title={cl.title}
-                watched={cl.watched}
-                isWatching={cl.id.toString() !== currentClassId}
+        {courseClasses && (
+          <>
+            {!hideThumb && nextClass && (
+              <CourseThumb
+                textToShow={textToShow}
+                showInfo={false}
+                thumbImg={nextClass.thumb}
+                handleClassChange={() => handleWatched(currentCourseId, nextClass.id, false)}
               />
+            )}
+            <div className={styles.course_classes} style={{ height: playlistHeight }}>
+              {courseClasses.map(cl => (
+                <div
+                  onClick={() => handleWatched(currentCourseId, cl.id, cl.watched)}
+                  className={`row m-0 ${cl.id.toString() === currentClassId ? styles.active : ''}`}
+                  key={cl.id}
+                >
+                  <CourseClass
+                    thumb={cl.thumb}
+                    title={cl.title}
+                    watched={cl.watched}
+                    isWatching={cl.id.toString() !== currentClassId}
+                  />
+                </div>
+              ))}
             </div>
-          ))}
+          </>
+        )}
       </div>
     </>
   );
