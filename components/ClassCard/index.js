@@ -13,7 +13,7 @@ import { Text1, Text2 } from '../ui/texts';
 import Play from '../ui/icons/Play';
 import Pause from '../ui/icons/Pause';
 
-export default function ClassCard({ title, subtitle, description, materials }) {
+export default function ClassCard({ title, subtitle, description, materials, video_url }) {
   const ref = useRef(null);
 
   const [isPlaying, _isPlaying] = useState(false);
@@ -22,15 +22,15 @@ export default function ClassCard({ title, subtitle, description, materials }) {
     isPlaying ? ref.current.pause() : ref.current.play();
   }, [isPlaying]);
 
+  useEffect(() => {
+    console.log('video_url', video_url);
+  }, [video_url]);
+
   return (
     <>
       <div className={styles.video_wrapper}>
         <div className={styles.video_player} onClick={() => _isPlaying(!isPlaying)}>
-          <ClassVideoPlayer
-            ref={ref}
-            src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
-            type="video/mp4"
-          />
+          <ClassVideoPlayer ref={ref} src={video_url} type="video/mp4" />
 
           <div className={styles.video_control_panel}>
             <span className={styles.play_or_pause}>{isPlaying ? <Pause /> : <Play />}</span>
