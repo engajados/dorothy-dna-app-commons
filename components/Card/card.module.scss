@@ -1,9 +1,9 @@
-@import '../../sass/variables';
+@use '../../../sass/theme/app_variables' as *;
 
 .card {
   background: $white;
   border-radius: .25rem;
-  box-shadow: $shadow;
+  box-shadow: $shadow-1;
   width: 100%;
   height: 100%;
   display: flex;

@@ -1,3 +1,5 @@
+@use '../../../sass/theme/app_variables' as *;
+
 .chart {
   display: flex;
   align-items: center;
@@ -43,7 +45,7 @@
               background-color: unset;
               text-align: unset;
               font-weight: 700;
-              color: $text;
+              color: $gray;
               margin-right: 0.25rem;
               font-size: 0.875rem;
 

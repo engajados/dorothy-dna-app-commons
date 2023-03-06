@@ -1,4 +1,4 @@
-@import '../../sass/variables';
+@use '../../../sass/theme/app_variables' as *;
 
 div[class*="card__"] {
   div[class*="card_body"] {
@@ -163,7 +163,7 @@ div[class*="card__"] {
 
           th {
             padding: .5rem 1rem;
-            color: $text;
+            color: $gray;
             font-size: .875rem;
             text-align: left;
 
@@ -177,7 +177,7 @@ div[class*="card__"] {
 
               svg {
                 height: 1rem;
-                stroke: $text;
+                stroke: $gray;
               }
             }
 
@@ -191,7 +191,7 @@ div[class*="card__"] {
           tr {
             td {
               padding: .5rem 1rem;
-              color: $text;
+              color: $gray;
               font-size: .875rem;
 
               @media (max-width: $mobileM) {
@@ -211,7 +211,7 @@ div[class*="card__"] {
 
                   svg {
                     height: 1rem;
-                    stroke: $text;
+                    stroke: $gray;
                   }
 
                   &:last-child {

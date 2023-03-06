@@ -1,4 +1,4 @@
-@import '../../sass/variables';
+@use '../../../sass/theme/app_variables' as *;
 
 .nav-notifications {
     margin-right: 1rem;
@@ -18,7 +18,7 @@
             height: 1.25rem;
             width: unset;
             transition: .25s ease;
-            stroke: $text;
+            stroke: $gray;
         }
 
         .nav-notifications-badge {

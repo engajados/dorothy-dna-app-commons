@@ -1,4 +1,4 @@
-@import '../../sass/variables';
+@use '../../../sass/theme/app_variables' as *;
 
 .nav-menu {
     display: flex;
@@ -10,7 +10,7 @@
         flex-wrap: nowrap;
         order: 0;
         flex: 1 1;
-        box-shadow: 0px 2px 6px $shadow-color;
+        box-shadow: $shadow-2;
     }
 
     &:hover {
@@ -45,7 +45,7 @@
             height: 1.25rem;
             width: unset;
             transition: .25s ease;
-            stroke: $text;
+            stroke: $gray;
 
             @media (max-width: $tablet) {
                 height: 1.5rem;
@@ -62,7 +62,7 @@
         white-space: nowrap;
         font-size: .875rem;
         font-weight: 600;
-        color: $text;
+        color: $gray;
         transition: .25s ease;
         pointer-events: none;
     }

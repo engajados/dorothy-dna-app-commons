@@ -1,5 +1,4 @@
-@import '../../sass/variables';
-
+@use '../../../sass/theme/app_variables' as *;
 
 .welcome-screen {
   position: absolute;

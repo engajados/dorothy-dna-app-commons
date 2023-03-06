@@ -1,4 +1,4 @@
-@import '../../sass/variables';
+@use '../../../sass/theme/app_variables' as *;
 
 @media (max-width: $tablet) {
 
