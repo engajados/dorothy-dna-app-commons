@@ -1,19 +1,8 @@
-import { useEffect, useState } from 'react';
 import SanitizedHTML from 'react-sanitized-html';
 
 import './ck-content-styles.css';
 
-export default function ContentRenderer({ type, contentId, text }) {
-  const [dirtyHtml, _dirtyHtml] = useState(null);
-
-  useEffect(() => {
-    if (!text)
-      fetch(`/content/${contentId}`)
-        .then(res => res.json())
-        .then(data => _dirtyHtml(data.text));
-    else _dirtyHtml(text);
-  }, [contentId, text]);
-
+export default function ContentRenderer({ type, text }) {
   return (
     <>
       <SanitizedHTML
@@ -56,7 +45,7 @@ export default function ContentRenderer({ type, contentId, text }) {
           th: ['class'],
           tr: ['class'],
         }}
-        html={dirtyHtml}
+        html={text}
         className={'ck-content'}
       />
     </>
