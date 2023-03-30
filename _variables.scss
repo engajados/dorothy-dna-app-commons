@@ -10,8 +10,9 @@
     --gradient: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
     --black: #222222;
     --gray-1: #666666;
-    --gray-2: #f1f1f1;
-    --gray-3: #fcfcfc;
+    --gray-2: #cccccc;
+    --gray-3: #f2f2f2;
+    --gray-4: #fcfcfc;
     --white: #ffffff;
 
     // Secondary palette
@@ -51,4 +52,7 @@
     --medium: 991px;
     --large: 1199px;
     --x-large: 1399px;
+
+    //ANIMATIONS
+    --transition-1: .25s ease;
 }
