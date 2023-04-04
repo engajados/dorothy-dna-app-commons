@@ -2,7 +2,7 @@ import './ck-content-styles.css';
 import styles from './content_renderer.module.scss';
 import sanitize from 'sanitize-html';
 
-export default function ContentRenderer({ type, selectedImageUrl, text }) {
+export default function ContentRenderer({ text, nocontainer = false }) {
   const sanitizedHtml = sanitize(text, {
     allowedTags: [
       'p',
@@ -41,9 +41,8 @@ export default function ContentRenderer({ type, selectedImageUrl, text }) {
   });
 
   return (
-    <div className={'app-container'}>
+    <div className={nocontainer ? '' : 'app-container'}>
       <div className={styles.content_wrapper}>
-        {type === 'news' && <>{selectedImageUrl}</>}
         <div dangerouslySetInnerHTML={{ __html: sanitizedHtml }} className={'ck-content'} />
       </div>
     </div>
