@@ -2,10 +2,10 @@ import * as React from "react";
 import styles from './styles.module.scss';
 
 
-export default function Title6({ value }, ...rest) {
+export default function Title6({ children }, ...rest) {
   return (
     <div className={`${styles.title6}`}>
-      {value}
+      {children}
     </div>
   );
 }

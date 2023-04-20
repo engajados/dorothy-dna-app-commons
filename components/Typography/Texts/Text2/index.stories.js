@@ -11,5 +11,5 @@ const Template = (args) => <Text2 {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-    value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    children: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
 }

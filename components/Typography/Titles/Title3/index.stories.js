@@ -11,5 +11,5 @@ const Template = (args) => <Title3 {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  value: "Lorem ipsum",
+  children: "Lorem ipsum",
 }

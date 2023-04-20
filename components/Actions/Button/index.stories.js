@@ -17,7 +17,7 @@ const Template = (args) => <Button {...args}/>;
 
 export const Default = Template.bind({});
 Default.args = {
-    value: "Lorem ipsum",
+    children: "Lorem ipsum",
     variant: "primary",
     icon: [<Plus/>],
 }
