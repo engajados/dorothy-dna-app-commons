@@ -57,7 +57,9 @@
           height: 100%;
 
           .tablebox {
-            height: calc(100% - 3rem);
+            &.limit-height {
+              height: calc(100% - 3rem);
+            }
 
             .tbox-body {
               height: calc(100% - 3rem);
