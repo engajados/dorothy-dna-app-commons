@@ -4,7 +4,7 @@
   padding: 0 1rem;
   height: 2rem;
   border: 1px solid $primary;
-  border-radius: 1rem;
+  border-radius: $border-radius-2;
   font-size: .875rem;
   font-weight: 500;
   box-sizing: border-box;
@@ -52,7 +52,7 @@
   padding: 0 1rem;
   height: 2rem;
   border: 1px solid $gray;
-  border-radius: 1rem;
+  border-radius: $border-radius-2;
   font-size: .875rem;
   font-weight: 500;
   box-sizing: border-box;

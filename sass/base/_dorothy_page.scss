@@ -57,7 +57,9 @@
           height: 100%;
 
           .tablebox {
-            height: calc(100% - 3rem);
+            &.limit-height {
+              height: calc(100% - 3rem);
+            }
 
             .tbox-body {
               height: calc(100% - 3rem);
@@ -87,8 +89,8 @@
       display: flex;
 
       .page-sidebar {
-        box-shadow: $shadow;
-        border-radius: .5rem;
+        box-shadow: $shadow-1;
+        border-radius: $border-radius-1;
         background: $white;
         min-width: 256px;
         overflow: hidden;
@@ -107,7 +109,7 @@
           display: flex;
           flex-direction: row;
           align-items: stretch;
-          box-shadow: $shadow;
+          box-shadow: $shadow-1;
 
           .sidebar-tab {
             height: 3rem;
@@ -175,10 +177,10 @@
 
           .page-actions-content {
             background: $white;
-            border-radius: .5rem;
+            border-radius: $border-radius-1;
             display: flex;
             justify-content: space-between;
-            box-shadow: $shadow;
+            box-shadow: $shadow-1;
             height: 3rem;
             align-items: center;
 
@@ -242,7 +244,7 @@
             width: 2rem;
             height: 2rem;
             background: $white;
-            border-radius: 50%;
+            border-radius: $border-radius-1;
             position: relative;
 
             .circle {
@@ -250,7 +252,7 @@
                 width: 100%;
                 height: 100%;
                 position: absolute;
-                border-radius: 50%;
+                border-radius: $border-radius-1;
                 clip: rect(0px, 2rem, 2rem, 1rem);
 
                 &.full,
@@ -262,7 +264,7 @@
                   width: 100%;
                   height: 100%;
                   position: absolute;
-                  border-radius: 50%;
+                  border-radius: $border-radius-1;
                   clip: rect(0px, 1rem, 2rem, 0px);
                   background-color: $primary;
                 }
@@ -272,7 +274,7 @@
               .inside-circle {
                 width: calc(100% - .25rem);
                 height: calc(100% - .25rem);
-                border-radius: 50%;
+                border-radius: $border-radius-1;
                 background: $white;
                 line-height: 1.625rem;
                 text-align: center;
@@ -292,13 +294,13 @@
 }
 
 .tablebox {
-  box-shadow: $shadow;
+  box-shadow: $shadow-1;
   overflow: hidden;
-  border-radius: .5rem;
+  border-radius: $border-radius-1;
   background: $white;
 
   .tbox-header {
-    box-shadow: $shadow;
+    box-shadow: $shadow-1;
     height: 3rem;
     display: flex;
     justify-content: space-between;
@@ -532,7 +534,7 @@
     max-width: 300px;
     padding: 1.5rem 1rem;
     border-radius: .25rem;
-    box-shadow: $shadow;
+    box-shadow: $shadow-1;
     display: flex;
     flex-direction: column;
     align-items: center;
