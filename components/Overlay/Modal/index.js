@@ -6,6 +6,7 @@ import Button from '../../Actions/Button';
 import { isEmpty } from 'lodash';
 
 export default function Modal({
+  addNew = false,
   children,
   size,
   title,
@@ -14,6 +15,9 @@ export default function Modal({
   contentpadding,
   modalState,
   onModalChange,
+  onSave,
+  onClose,
+  /* onConfirmation */
 }) {
   const [state, setModalState] = useState(modalState);
 
@@ -49,13 +53,17 @@ export default function Modal({
         <div className={`${styles.footer}`}>
           <div className={`${styles.indicators}`}></div>
           <div className={`${styles.actions}`}>
-            <div className={`${styles.addanother}`}>
-              <Button variant="link">Adicionar outra</Button>
-            </div>
-            <Button variant="link" onClick={() => handleCloseModal()}>
+            {addNew && (
+              <div className={`${styles.addanother}`}>
+                <Button variant="link">Adicionar outra</Button>
+              </div>
+            )}
+            <Button variant="link" onClick={() => onClose()}>
               Cancelar
             </Button>
-            <Button variant="primary">{actionlabel}</Button>
+            <Button variant="primary" onClick={() => onSave()}>
+              {actionlabel}
+            </Button>
           </div>
         </div>
       </div>
