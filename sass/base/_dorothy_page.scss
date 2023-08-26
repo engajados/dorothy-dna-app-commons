@@ -92,10 +92,11 @@
         box-shadow: $shadow-1;
         border-radius: $border-radius-1;
         background: $white;
-        min-width: 256px;
+        min-width: 128px;
         overflow: hidden;
         user-select: none;
         margin-bottom: auto;
+        z-index: 3000;
 
         &:first-child {
           margin-right: 1rem;
@@ -139,6 +140,11 @@
         .sidebar-body {
           padding: 1.5rem 1rem;
           font-size: .875rem;
+
+          ul {
+            padding: 0 0.5rem;
+            list-style: none;
+          }
         }
       }
 
