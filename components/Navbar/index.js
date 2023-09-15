@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Menu, MenuItem, TextField, useMediaQuery, Dialog, DialogActions, DialogContent, DialogTitle, Button } from '@mui/material';
+import { Menu, MenuItem, TextField, useMediaQuery, Dialog, DialogActions, DialogContent, DialogTitle, Button, Slider } from '@mui/material';
 
 import ReactCrop, {
   centerCrop,
@@ -69,8 +69,7 @@ export default function Navbar({ appLogo }) {
   const [imgSrc, _imgSrc] = useState('');
   const previewCanvasRef = useRef(null)
   const imgRef = useRef(null)
-  // const hiddenAnchorRef = useRef(null)
-  // const blobUrlRef = useRef('')
+  const fileInput = useRef(null);
   const [crop, _crop] = useState()
   const [completedCrop, _completedCrop] = useState()
   const [scale, _scale] = useState(1)
@@ -192,6 +191,8 @@ export default function Navbar({ appLogo }) {
     if (e.target.files && e.target.files.length > 0) {
 
       _crop(undefined) // Makes crop preview update between images.
+      _scale(1);
+      _rotate(0);
 
       const reader = new FileReader()
       reader.addEventListener('load', () =>
@@ -383,59 +384,29 @@ export default function Navbar({ appLogo }) {
         aria-labelledby="scroll-dialog-title"
         aria-describedby="scroll-dialog-description"
       >
-        <DialogTitle id="scroll-dialog-title">Editar perfil</DialogTitle>
+        <DialogTitle id="scroll-dialog-title">Editar imagem de perfil</DialogTitle>
         <DialogContent dividers={true}>
-          <div className="row">
-            <div className="col-xs-4">
-              <input type="file" accept="image/*" onChange={onSelectFile} />
+          {!!imgSrc && (<div className={`row ${styles['thumb-edition']}`}>
+            <div className="col-xs-6">              
+              <ReactCrop
+                crop={crop}
+                onChange={(_, percentCrop) => _crop(percentCrop)}
+                onComplete={(c) => _completedCrop(c)}
+                minHeight={100}
+                circularCrop={true}
+                aspect={1}
+              >
+                <img
+                  ref={imgRef}
+                  alt="Crop me"
+                  src={imgSrc}
+                  style={{ transform: `scale(${scale}) rotate(${rotate}deg)` }}
+                  onLoad={onImageLoad}
+                  /* height="500" */
+                />
+              </ReactCrop>
             </div>
-            <div className="col-xs-4">
-              <label htmlFor="scale-input">Scale: </label>
-              <input
-                id="scale-input"
-                type="number"
-                step="0.1"
-                value={scale}
-                disabled={!imgSrc}
-                onChange={(e) => _scale(Number(e.target.value))}
-              />
-            </div>
-            <div className="col-xs-4">
-              <label htmlFor="rotate-input">Rotate: </label>
-              <input
-                id="rotate-input"
-                type="number"
-                value={rotate}
-                disabled={!imgSrc}
-                onChange={(e) =>
-                  _rotate(Math.min(180, Math.max(-180, Number(e.target.value))))
-                }
-              />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-xs-6">
-              {!!imgSrc && (
-                <ReactCrop
-                  crop={crop}
-                  onChange={(_, percentCrop) => _crop(percentCrop)}
-                  onComplete={(c) => _completedCrop(c)}
-                  minHeight={100}
-                  circularCrop={true}
-                  aspect={1}
-                >
-                  <img
-                    ref={imgRef}
-                    alt="Crop me"
-                    src={imgSrc}
-                    style={{ transform: `scale(${scale}) rotate(${rotate}deg)` }}
-                    onLoad={onImageLoad}
-                    /* height="500" */
-                  />
-                </ReactCrop>
-              )}
-            </div>
-            <div className="col-xs-6">
+            <div className={`col-xs-6 ${styles.preview}`}>
               {!!imgSrc && !!completedCrop && (
                 <>
                   <div>
@@ -453,6 +424,25 @@ export default function Navbar({ appLogo }) {
                 </>
               )}
             </div>
+          </div>)}
+
+          <div className={`row ${styles.controls}`}>
+            <div className="col-xs-4">
+              <input type="file" accept="image/*" onChange={onSelectFile} hidden ref={fileInput} />
+              <button className="button-primary" onClick={() => fileInput.current.click()}>
+              {!imgSrc ? <>escolher uma imagem</> : <>trocar a imagem</>}
+              </button>
+            </div>
+            {!!imgSrc && (<>
+              <div className="col-xs-4">
+                <label htmlFor="scale-input">Escala: </label>
+                <Slider min={0.5} max={2.5} step={0.1} value={scale} onChange={e => _scale(e.target.value)} />
+              </div>
+              <div className="col-xs-4">
+                <label htmlFor="rotate-input">Rotação: </label>
+                <Slider min={-180} max={180} value={rotate} onChange={e => _rotate(e.target.value)} />
+              </div>
+            </>)}
           </div>
         </DialogContent>
         <DialogActions>
