@@ -10,6 +10,8 @@ import ReactCrop, {
 import { useDebounceEffect } from './useDebounceEffect';
 import { canvasPreview } from './canvasPreview'
 
+import { useQuery, useMutation, useQueryClient } from 'react-query';
+
 import 'react-image-crop/dist/ReactCrop.css'
 
 import ChevronDown from '../../../components/icons/ChevronDown';
@@ -52,6 +54,7 @@ function centerAspectCrop(
 export default function Navbar({ appLogo }) {
   let history = useHistory();
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+  const queryClient = useQueryClient();
 
   const { logout, user } = useUser();
   const { server } = useDorothy();
@@ -78,12 +81,26 @@ export default function Navbar({ appLogo }) {
 
   const isLayoutTablet = useMediaQuery(layoutTabletMQ);
 
+  const { data: hasThumb } = useQuery(
+    ['has-thumb', { user: user.id }],
+    { queryFn: async () => (await axios.get(`${server}user/has_thumb`)).data },
+);
+
   useEffect(() => {
     if (!passwordDialg) return;
 
     _password('');
     _password_conf('');
   }, [passwordDialg]);
+
+  const mutations = {
+    removeProfilePhoto: useMutation(
+      () => axios.delete(`${server}user/thumb`),
+      {
+        onSuccess: () => queryClient.invalidateQueries(`has-thumb`),
+      },  
+    )
+  };
 
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
@@ -221,7 +238,7 @@ export default function Navbar({ appLogo }) {
     _showProfileImage(false);
     _imgSrc('');
 
-    const snack = enqueueSnackbar('Alterando o imagem do perfil...', {
+    const snack = enqueueSnackbar('Alterando a imagem do perfil...', {
       persist: true,
       anchorOrigin: {
         vertical: 'top',
@@ -242,6 +259,28 @@ export default function Navbar({ appLogo }) {
       data,
       config: { headers: { 'Content-Type': 'multipart/form-data' } },
     });
+
+    _thumbstamp(Date.now());
+
+    queryClient.invalidateQueries(`has-thumb`);
+
+    closeSnackbar(snack);
+  }
+
+  const removeProfileImage = async () => {     
+    setAnchorEl(null);
+    _showProfileImage(false);
+    _imgSrc('');
+
+    const snack = enqueueSnackbar('Removendo a imagem do perfil...', {
+      persist: true,
+      anchorOrigin: {
+        vertical: 'top',
+        horizontal: 'center',
+      },
+    });
+
+    await mutations.removeProfilePhoto.mutateAsync();
 
     _thumbstamp(Date.now());
 
@@ -312,8 +351,9 @@ export default function Navbar({ appLogo }) {
                 'aria-labelledby': 'profile-btn',
               }}
             >
-              <MenuItem onClick={openProfile}>Meu perfil</MenuItem>
-              <MenuItem onClick={openProfileImage}>Alterar a foto do perfil</MenuItem>
+              <MenuItem onClick={openProfile}>Informações de perfil</MenuItem>
+              <MenuItem onClick={openProfileImage}>{hasThumb ? <>Alterar a</> : <>Enviar</>} foto do perfil</MenuItem>
+              {/* {hasThumb && <MenuItem onClick={removeProfileImage}>Remover a foto do perfil</MenuItem>} */}
               <MenuItem onClick={handleChangePasswwordRequest}>Trocar senha</MenuItem>
               <MenuItem onClick={handleLogout}>Sair</MenuItem>
 
@@ -431,7 +471,7 @@ export default function Navbar({ appLogo }) {
               <input type="file" accept="image/*" onChange={onSelectFile} hidden ref={fileInput} />
               <button className="button-primary" onClick={() => fileInput.current.click()}>
               {!imgSrc ? <>escolher uma imagem</> : <>trocar a imagem</>}
-              </button>
+              </button>              
             </div>
             {!!imgSrc && (<>
               <div className="col-xs-4">
@@ -446,6 +486,7 @@ export default function Navbar({ appLogo }) {
           </div>
         </DialogContent>
         <DialogActions>
+          {hasThumb && <Button onClick={removeProfileImage}>remover imagem de perfil</Button>}
           <Button onClick={handleProfileImageSave}>gravar</Button>
           <Button onClick={handleCloseProfileImage}>cancelar</Button>
         </DialogActions>
