@@ -79,12 +79,21 @@ export default function Navbar({ appLogo }) {
   const [rotate, _rotate] = useState(0)
   const [thumbstamp, _thumbstamp] = useState(Date.now());
 
+  const [name, _name] = useState('');
+  const [about, _about] = useState('');
+  const [name_error, _name_error] = useState(false);
+
   const isLayoutTablet = useMediaQuery(layoutTabletMQ);
 
   const { data: hasThumb } = useQuery(
     ['has-thumb', { user: user.id }],
     { queryFn: async () => (await axios.get(`${server}user/has_thumb`)).data },
-);
+  );
+
+  const { data: userInfo } = useQuery(
+    ['user-info', { user: user.id }],
+    { queryFn: async () => (await axios.get(`${server}user/info`)).data },
+  );
 
   useEffect(() => {
     if (!passwordDialg) return;
@@ -93,13 +102,29 @@ export default function Navbar({ appLogo }) {
     _password_conf('');
   }, [passwordDialg]);
 
+  useEffect(() => {
+    if (!!userInfo) {
+      _name(userInfo.name);
+      _about(userInfo.about);
+    }
+  }, [userInfo])
+
   const mutations = {
     removeProfilePhoto: useMutation(
       () => axios.delete(`${server}user/thumb`),
       {
         onSuccess: () => queryClient.invalidateQueries(`has-thumb`),
-      },  
-    )
+      },
+    ),
+    saveProfile: useMutation(
+      () => axios.put(`${server}user/info`, {
+        name,
+        about,
+      }),
+      {
+        onSuccess: () => queryClient.invalidateQueries(`user-info`),
+      },
+    ),
   };
 
   const handleClick = event => {
@@ -116,6 +141,9 @@ export default function Navbar({ appLogo }) {
   };
 
   const openProfile = () => {
+    _name(userInfo.name);
+    _about(userInfo.about);
+    _name_error('');
     setAnchorEl(null);
     _showProfile(true);
   }
@@ -267,7 +295,7 @@ export default function Navbar({ appLogo }) {
     closeSnackbar(snack);
   }
 
-  const removeProfileImage = async () => {     
+  const removeProfileImage = async () => {
     setAnchorEl(null);
     _showProfileImage(false);
     _imgSrc('');
@@ -290,6 +318,27 @@ export default function Navbar({ appLogo }) {
   const handleCloseProfileImage = () => {
     _showProfileImage(false);
     _imgSrc('');
+  }
+
+  const handleSaveProfile = async () => {
+    if(name.trim().length===0) {
+      _name_error(true);
+      return;
+    }
+
+    const snack = enqueueSnackbar('Gravando informações de perfil...', {
+      persist: true,
+      anchorOrigin: {
+        vertical: 'top',
+        horizontal: 'center',
+      },
+    });
+
+    await mutations.saveProfile.mutateAsync();
+
+    _showProfile(false);
+
+    closeSnackbar(snack);
   }
 
   useDebounceEffect(
@@ -338,7 +387,7 @@ export default function Navbar({ appLogo }) {
               onClick={handleClick}
             >
               {thumbstamp && <img className={`${styles.nav_profile_img}`} src={`${server}user/${user.id}/thumb/?ts=${thumbstamp}`} alt="avatar" />}
-              {!isLayoutTablet ? user.name : ''}
+              {!isLayoutTablet ? (userInfo?.name || '') : ''}
               <ChevronDown />
             </div>
             <Menu
@@ -400,17 +449,41 @@ export default function Navbar({ appLogo }) {
         className="modal"
         open={showProfile}
         onClose={() => _showProfile(false)}
-        maxWidth="md"
+        maxWidth="sm"
         scroll="paper"
         aria-labelledby="scroll-dialog-title"
         aria-describedby="scroll-dialog-description"
       >
-        <DialogTitle id="scroll-dialog-title">Editar perfil</DialogTitle>
+        <DialogTitle id="scroll-dialog-title">Editar informações de perfil</DialogTitle>
         <DialogContent dividers={true}>
-          TODO: profile
+          {!!userInfo && <>
+            <div className="row">
+              <div className="col-md-12">
+                <TextField
+                  className="input-text"
+                  label="Seu nome"
+                  shrink="false"
+                  value={name}
+                  onChange={e => _name(e.target.value)}
+                  error={name_error}
+                />
+              </div>
+              <div className="col-md-12">
+                <TextField
+                  className="input-text"
+                  label="Sobre você"
+                  shrink="false"
+                  value={about}
+                  multiline
+                  rows={5}
+                  onChange={e => _about(e.target.value)}
+                />
+              </div>
+            </div>
+          </>}
         </DialogContent>
         <DialogActions>
-          <Button onClick={console.log}>gravar</Button>
+          <Button onClick={handleSaveProfile}>gravar</Button>
           <Button onClick={() => _showProfile(false)}>cancelar</Button>
         </DialogActions>
       </Dialog>
@@ -427,7 +500,7 @@ export default function Navbar({ appLogo }) {
         <DialogTitle id="scroll-dialog-title">Editar imagem de perfil</DialogTitle>
         <DialogContent dividers={true}>
           {!!imgSrc && (<div className={`row ${styles['thumb-edition']}`}>
-            <div className="col-xs-6">              
+            <div className="col-xs-6">
               <ReactCrop
                 crop={crop}
                 onChange={(_, percentCrop) => _crop(percentCrop)}
@@ -442,7 +515,7 @@ export default function Navbar({ appLogo }) {
                   src={imgSrc}
                   style={{ transform: `scale(${scale}) rotate(${rotate}deg)` }}
                   onLoad={onImageLoad}
-                  /* height="500" */
+                /* height="500" */
                 />
               </ReactCrop>
             </div>
@@ -470,8 +543,8 @@ export default function Navbar({ appLogo }) {
             <div className="col-xs-4">
               <input type="file" accept="image/*" onChange={onSelectFile} hidden ref={fileInput} />
               <button className="button-primary" onClick={() => fileInput.current.click()}>
-              {!imgSrc ? <>escolher uma imagem</> : <>trocar a imagem</>}
-              </button>              
+                {!imgSrc ? <>escolher uma imagem</> : <>trocar a imagem</>}
+              </button>
             </div>
             {!!imgSrc && (<>
               <div className="col-xs-4">
