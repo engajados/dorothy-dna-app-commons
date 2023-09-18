@@ -83,6 +83,8 @@ export default function Navbar({ appLogo }) {
   const [about, _about] = useState('');
   const [name_error, _name_error] = useState(false);
 
+  const [showCertificateDialog, _showCertificateDialog] = useState(false);
+
   const isLayoutTablet = useMediaQuery(layoutTabletMQ);
 
   const { data: hasThumb } = useQuery(
@@ -146,6 +148,11 @@ export default function Navbar({ appLogo }) {
     _name_error('');
     setAnchorEl(null);
     _showProfile(true);
+  }
+
+  const handleShowCertificates = () => {
+    setAnchorEl(null);
+    _showCertificateDialog(true);
   }
 
   const openProfileImage = () => {
@@ -321,7 +328,7 @@ export default function Navbar({ appLogo }) {
   }
 
   const handleSaveProfile = async () => {
-    if(name.trim().length===0) {
+    if (name.trim().length === 0) {
       _name_error(true);
       return;
     }
@@ -404,6 +411,7 @@ export default function Navbar({ appLogo }) {
               <MenuItem onClick={openProfileImage}>{hasThumb ? <>Alterar a</> : <>Enviar</>} foto do perfil</MenuItem>
               {/* {hasThumb && <MenuItem onClick={removeProfileImage}>Remover a foto do perfil</MenuItem>} */}
               <MenuItem onClick={handleChangePasswwordRequest}>Trocar senha</MenuItem>
+              {!!userInfo && userInfo.certificates_count > 0 && <MenuItem onClick={handleShowCertificates}>Certificados</MenuItem>}
               <MenuItem onClick={handleLogout}>Sair</MenuItem>
 
               <div className={`${styles.version_number}`}>
@@ -564,6 +572,43 @@ export default function Navbar({ appLogo }) {
           <Button onClick={handleCloseProfileImage}>cancelar</Button>
         </DialogActions>
       </Dialog>
+
+      <CertificateDialog open={showCertificateDialog} onClose={() => _showCertificateDialog(false)} />
     </>
   );
+}
+
+function CertificateDialog({ open, onClose }) {
+  const { user } = useUser();
+  const { server } = useDorothy();
+
+  const { data } = useQuery(
+    ['my-certificates', { user: user.id }],
+    { queryFn: async () => (await axios.get(`${server}user/learning/certificates`)).data, enabled: !!open },
+  );
+
+  return (<Dialog
+    className="modal"
+    open={open}
+    onClose={onClose}
+    maxWidth="xs"
+    scroll="paper"
+    aria-labelledby="scroll-dialog-title"
+    aria-describedby="scroll-dialog-description"
+  >
+    <DialogTitle id="scroll-dialog-title">Seus certificados</DialogTitle>
+    <DialogContent dividers={true}><div className="row">
+      <div className="col-xs-12">
+        <ul>
+          {data && data.map(c => <li className={styles['certificate-link']} key={c.uuid}>
+            <a href={`${server}learning/course/${c.course_id}/certificate/${c.uuid}`} target="_blank" rel="noreferrer">{c.title}</a>
+          </li>)}
+        </ul>
+      </div>
+    </div>
+    </DialogContent>
+    <DialogActions>
+      <Button onClick={onClose}>fechar</Button>
+    </DialogActions>
+  </Dialog>)
 }
