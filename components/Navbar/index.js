@@ -469,7 +469,7 @@ export default function Navbar({ appLogo }) {
               <div className="col-md-12">
                 <TextField
                   className="input-text"
-                  label="Seu nome"
+                  label="Nome completo"
                   shrink="false"
                   value={name}
                   onChange={e => _name(e.target.value)}
