@@ -168,3 +168,31 @@
     }
   }
 }
+
+.thumb-edition {
+  background-color: rgba(228, 111, 42, 0.05);
+  opacity: 0.8;
+  background-size: 10px 10px;
+  background-image: repeating-linear-gradient(45deg, #ffffff 0, #ffffff 1px, rgba(228, 111, 42, 0.05) 0, rgba(228, 111, 42, 0.05) 50%);
+  border-radius: 5px;
+}
+
+.preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+}
+
+.certificate-link a {
+  color: inherit;
+  text-decoration: none;
+
+  &:hover {
+    font-weight: 600;
+  }
+}

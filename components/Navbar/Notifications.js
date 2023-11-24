@@ -4,6 +4,10 @@ import Bell from '../../../components/icons/Bell';
 import { useUser, useRouter } from 'dorothy-dna-react';
 import styles from './notifications.module.scss';
 
+function prepareAlert(data) {
+  return `Novidades na comunidade "${data.extended.communityName}"`;
+}
+
 export function Notifications() {
   const { alertCounter, retrieveAlerts, alerts } = useUser();
   const { onAlertClick } = useRouter();
@@ -67,7 +71,7 @@ export function Notifications() {
         {alerts &&
           alerts.map(a => (
             <MenuItem key={a.id} /* onClick={handleSelect} */>
-              <span onClick={() => handleAlertClick(a.data)}>{a.data.text}</span>
+              <span onClick={() => handleAlertClick(a.data)}>{prepareAlert(a.data)}</span>
             </MenuItem>
           ))}
       </Menu>
